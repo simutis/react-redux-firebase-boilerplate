@@ -1,6 +1,7 @@
 /* eslint "import/imports-first": 0 */
 /* eslint no-undef: 0 */
 /* eslint import/extensions: 0 */
+/* global window */
 
 import 'babel-polyfill';
 import 'bootstrap-social';
@@ -20,18 +21,15 @@ import reducers from './reducers';
 import routes from './routes';
 import rootSaga from './Sagas';
 
+// Redux Dev tools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const logger = createLogger();
-
-// TODO logger only fro DEV environment
-// if (process.env.NODE_ENV === 'development') {
-//     createStoreWithMiddleware = applyMiddleware(thunk, logger, ReduxPromise)(createStore);
-// }else {
-//     createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise)(createStore);
-// }
-
-// TODO logger only fro DEV environment
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducers, applyMiddleware(sagaMiddleware, logger));
+
+const enhancers = [applyMiddleware(sagaMiddleware, logger)];
+
+const store = createStore(reducers, composeEnhancers(...enhancers));
 
 sagaMiddleware.run(rootSaga);
 
