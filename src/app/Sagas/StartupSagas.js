@@ -1,5 +1,5 @@
-import { put } from 'redux-saga/effects'
-import { startupSuccess, startupFailure } from '../actions/startup'
+import { put } from 'redux-saga/effects';
+import { startupSuccess, startupFailure } from '../actions/startup';
 // import TemperatureActions from '../Redux/TemperatureRedux';
 // import { is } from 'ramda'
 // import { _databaseInit } from '../Database/databaseSagas'
@@ -9,9 +9,9 @@ import { startupSuccess, startupFailure } from '../actions/startup'
 
 // process STARTUP actions
 export default function* startup() {
-    try {
-        yield put(startupSuccess(true))
-    } catch (error) {
-        yield put(startupFailure(error))
-    }
+  try {
+    yield put(startupSuccess(true));
+  } catch (error) {
+    yield put(startupFailure(error));
+  }
 }
