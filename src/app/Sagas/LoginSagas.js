@@ -19,6 +19,7 @@ export default function* login(api, action) {
       yield put(LoginActions.loginFailure('WRONG'));
       yield put(LoginActions.loginFailure(false));
     } else {
+      debugger;
       yield put(LoginActions.loginSuccess(email, pass));
       // run replication
       // set credentials into state

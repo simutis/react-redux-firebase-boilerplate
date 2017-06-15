@@ -28,9 +28,11 @@ export function* userAuthSagas(action) {
 export function* userAuthWithProvider(action) {
   try {
     const user = yield call(FireBaseTools.loginWithProvider, action.payload);
+    debugger;
     if (user.errorMessage) {
       yield put(userLoginWithProviderFailure(user.errorMessage));
     } else {
+      debugger;
       yield put(userLoginWithProviderSuccess(user));
     }
   } catch (error) {
